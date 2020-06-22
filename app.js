@@ -8,6 +8,9 @@ const route = require('./routes/index')
 const session = require('express-session')
 const app = express()
 const PORT = process.env.PORT
+const db = require('../../models')
+const Todo = db.Todo
+const User = db.User
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
