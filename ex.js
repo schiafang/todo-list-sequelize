@@ -23,15 +23,15 @@ module.exports = app => {
       })
       .catch(err => done(err, false))
   }))
+
   passport.serializeUser((user, done) => {
     done(null, user.id)
   })
   passport.deserializeUser((id, done) => {
-    User.findByPk(id)
-      .then(user => {
+    User.findByPk(id)    //mongoose: User.findById(id)
+      .then((user) => {        //mongoose: .then(user => done(null, user))
         user = user.toJSON()
         done(null, user)
-      })
-      .catch(err => done(err, null))
+      }).catch(err => done(err, null))
   })
 }

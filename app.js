@@ -11,6 +11,7 @@ const PORT = process.env.PORT
 const db = require('./models')
 const Todo = db.Todo
 const User = db.User
+const usePassport = require('./config/passport')
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
@@ -23,6 +24,7 @@ app.use(session({
   saveUninitialized: true
 }))
 
+usePassport(app)
 app.use(route)
 
 app.listen(PORT, () => {
