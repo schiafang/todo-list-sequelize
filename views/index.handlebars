@@ -1,1 +1,21 @@
-<h1>Hello world</h1>
+<div class="container" style="display: flex; flex-direction :column; align-items: center;">
+
+
+  {{#each todos}}
+  <div class="col-6 todo-list mt-2">
+    <div class="list-group">
+      <div class="input-group-text">
+        <input type="checkbox" aria-label="Checkbox for following text input" name="isDone"
+          {{#if this.isDone}}checked{{/if}} disabled>
+        <a href="./todos/{{ this.id }}" type="button" class="list-group-item list-group-item-action"
+          style="background-color: transparent; border:none; text-align:start;">{{ this.name }}</a>
+        <form action="./todos/{{ this.id }}?_method=DELETE" method="POST">
+          <button type="submit" class="btn btn-danger">刪除</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  {{/each}}
+
+
+</div>
