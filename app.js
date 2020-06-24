@@ -25,7 +25,13 @@ app.use(session({
 }))
 
 usePassport(app)
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.isAuthenticated()
+  res.locals.user = req.user //將使用者資訊給 res
+  next()
+})
 app.use(route)
+
 
 app.listen(PORT, () => {
   console.log(`App is running on http://localhost:${PORT}`)
